@@ -12,11 +12,11 @@
         <main class="container center">
             <h1>PetHub</h1>
 
-            <p>Tem certeza que deseja sair da aplicação?</p>
+            <p th:text="#{logout.areYouSure}"></p>
 
             <form th:action="${'/logout'}" method="post">
-                <a href="/pet" class="btn grey">cancelar</a>
-                <button class="btn">sim, quero sair</button>
+                <a href="/pet" class="btn grey" th:text="#{logout.cancel}"></a>
+                <button class="btn pink lighten-1" th:text="#{logout.confirm}"></button>
             </form>
         </main>
 

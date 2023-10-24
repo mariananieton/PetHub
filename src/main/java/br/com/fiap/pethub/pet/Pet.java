@@ -20,7 +20,7 @@ public class Pet {
 	@NotBlank
 	String name;
 
-	@Size(min = 10, message = "a descrição deve ter pelo menos 10 caracteres")
+	@Size(min = 10, message = "{pet.description.size}")
 	String description;
 
 	@NotBlank

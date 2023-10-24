@@ -14,9 +14,9 @@
             <div class="nav-wrapper">
                 <a href="#" class="brand-logo">PetHub</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li class="active"><a href="/pet">meus pets</a></li>
-                    <li><a href="#">consultas</a></li>
-                    <li><a href="#">usuários</a></li>
+                    <li class="active"><a href="/pet" th:text="#{pet.myPets}"></a></li>
+                    <li><a href="#" th:text="#{pet.appointments}"></a></li>
+                    <li><a href="#" th:text="#{users}"></a></li>
                     <li>
                         <a class="dropdown-trigger" href="#" data-target='dropdown1'>
                             <img class="avatar" th:src="${avatar_url}" alt="">
@@ -25,7 +25,7 @@
                         <ul id='dropdown1' class='dropdown-content'>
                             <li><span th:text="${username}"></span></li>
                             <li class="divider" tabindex="-1"></li>
-                            <li><a href="/logout"><i class="material-icons">logout</i>sair</a></li>
+                            <li><a href="/logout" th:text="#{logout.logout}"><i class="material-icons">logout</i></a></li>
                         </ul>
                     </li>
                 </ul>
@@ -35,7 +35,7 @@
         <main class="container">
             <span class="card-panel teal accent-3" th:if="${success}" th:text="${success}"></span>
             <span class="card-panel red accent-3 white-text" th:if="${error}" th:text="${error}"></span>
-            <h2>Meus Pets</h2>
+            <h2 th:text="#{pet.myPetsTitle}"></h2>
 
             <div class="row">
                 <div class="col s12 m6 l4" th:each="pet : ${pets}">

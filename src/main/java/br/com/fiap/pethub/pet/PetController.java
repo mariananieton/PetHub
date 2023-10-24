@@ -2,6 +2,8 @@ package br.com.fiap.pethub.pet;
 
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.stereotype.Controller;
@@ -20,6 +22,9 @@ public class PetController {
 	@Autowired
 	PetService petService;
 
+	@Autowired
+	MessageSource messageSource;
+
 	@GetMapping
 	public String index(Model model, @AuthenticationPrincipal OAuth2User user) {
 		model.addAttribute("avatar_url", user.getAttribute("avatar_url"));
@@ -31,9 +36,9 @@ public class PetController {
 	@GetMapping("/delete/{id}")
 	public String delete(@PathVariable Long id, RedirectAttributes redirect) {
 		if (petService.delete(id)){
-			redirect.addFlashAttribute("success", "Pet excluído com sucesso!");
+			redirect.addFlashAttribute("success", getMessage("pet.delete.success"));
 		} else {
-			redirect.addFlashAttribute("error", "Pet não encontrado!");
+			redirect.addFlashAttribute("error", getMessage("pet.notFound"));
 		}
 		return "redirect:/pet";
 	}
@@ -49,7 +54,11 @@ public class PetController {
 		if (result.hasErrors()) return "/pet/form";
 
 		petService.save(pet);
-		redirect.addFlashAttribute("success", "Pet cadastrado com sucesso!");
+		redirect.addFlashAttribute("success", getMessage("pet.create.success"));
 		return "redirect:/pet";
+	}
+
+	private String getMessage(String code){
+		return messageSource.getMessage(code, null, LocaleContextHolder.getLocale());
 	}
 }

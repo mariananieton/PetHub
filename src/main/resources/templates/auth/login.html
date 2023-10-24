@@ -12,9 +12,9 @@
         <main class="container center">
             <h1>PetHub</h1>
 
-            <p>App para cadastrar seus pets e marcar consultas veterinárias</p>
+            <p th:text="#{pethub.description}"></p>
 
-            <a href="/oauth2/authorization/github" class="btn">entrar com GitHub</a>
+            <a href="/oauth2/authorization/github" class="btn pink lighten-1" th:text="#{login.github}"></a>
         </main>
 
     </body>
