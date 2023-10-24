@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetHub</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</head>
+    <body class="pink lighten-5">
+        <nav>
+            <div class="nav-wrapper">
+                <a href="#" class="brand-logo">PetHub</a>
+                <ul id="nav-mobile" class="right hide-on-med-and-down">
+                    <li class="active"><a href="/pet">meus pets</a></li>
+                    <li><a href="#">consultas</a></li>
+                    <li><a href="#">usuários</a></li>
+                </ul>
+            </div>
+        </nav>
+
+        <main class="container">
+            <h2>Cadastrar Pet</h2>
+
+            <div class="card">
+                <form class="col s12" th:action="@{/pet}" th:object="${pet}" method="post" >
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input th:field="*{name}" type="text" th:classappend="${#fields.hasErrors('name')} ? invalid">
+                                <label for="name">Nome</label>
+                                <span class="helper-text red-text" th:errors="*{name}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input th:field="*{breed}" type="text" th:classappend="${#fields.hasErrors('breed')} ? invalid">
+                                <label for="breed">Raça</label>
+                                <span class="helper-text red-text" th:errors="*{breed}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input th:field="*{age}" type="number" th:classappend="${#fields.hasErrors('age')} ? invalid">
+                                <label for="age">Idade</label>
+                                <span class="helper-text red-text" th:errors="*{age}"></span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <textarea class="materialize-textarea" th:field="*{description}" th:classappend="${#fields.hasErrors('description')} ? invalid"></textarea>
+                            <label for="description">Descrição</label>
+                            <span class="helper-text red-text" th:errors="*{description}"></span>
+                        </div>
+                    </div>
+                    <div class="card-action right-align">
+                        <a href="/pet">cancelar</a>
+                        <button class="btn pink lighten-1">cadastrar</button>
+                    </div>
+                </form>
+            </div>
+
+        </main>
+    </body>
+</html>

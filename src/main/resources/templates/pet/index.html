@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>PetHub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
     <body class="pink lighten-5">
         <nav>
@@ -15,6 +16,9 @@
                     <li class="active"><a href="/pet">meus pets</a></li>
                     <li><a href="#">consultas</a></li>
                     <li><a href="#">usuários</a></li>
+                    <li>
+                        <img class="avatar" th:src="${avatar_url}" alt="">
+                    </li>
                 </ul>
             </div>
         </nav>
@@ -28,10 +32,10 @@
                 <div class="col s12 m6 l4" th:each="pet : ${pets}">
                     <div class="card">
                         <div class="card-content">
-                            <span class="card-title" th:text="${pet.nome}"></span>
-                            <p th:text="${pet.raca}"></p>
-                            <p th:text="${pet.idade}"></p>
-                            <p th:text="${pet.descricao}"></p>
+                            <span class="card-title" th:text="${pet.name}"></span>
+                            <p th:text="${pet.breed}"></p>
+                            <p th:text="${pet.age}"></p>
+                            <p th:text="${pet.description}"></p>
                         </div>
                         <div class="card-action">
                             <a th:href="${'/pet/delete/' + pet.id}" class="btn red">
@@ -43,7 +47,7 @@
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large pink lighten-1">
+                <a href="/pet/new" class="btn-floating btn-large pink lighten-1">
                     <i class="large material-icons">add</i>
                 </a>
             </div>

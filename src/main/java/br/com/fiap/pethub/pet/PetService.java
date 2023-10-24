@@ -23,4 +23,8 @@ public class PetService {
 		petRepository.deleteById(id);
 		return true;
 	}
+
+	public void save(Pet pet) {
+		petRepository.save(pet);
+	}
 }

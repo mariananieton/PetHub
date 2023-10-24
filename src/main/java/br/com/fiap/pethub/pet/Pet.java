@@ -18,14 +18,14 @@ public class Pet {
 	Long id;
 
 	@NotBlank
-	String nome;
+	String name;
 
-	@Size(min = 10)
-	String descricao;
+	@Size(min = 10, message = "a descrição deve ter pelo menos 10 caracteres")
+	String description;
 
 	@NotBlank
-	String raca;
+	String breed;
 
 	@Min(0) @Max(150)
-	Integer idade;
+	Integer age;
 }
